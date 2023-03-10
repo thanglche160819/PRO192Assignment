@@ -16,53 +16,33 @@ import java.util.Scanner;
  *
  * @author PC - Thinkpad
  */
-public class Demo {
-    public static void dispList(List<Product> t) {
-       for(Product x : t) {
-           System.out.printf("(%s,%s,%f)\n",x.getProductID(),x.getProductName(),x.getProductPrice());
-       }
-       System.out.printf("\r\n");
-     } 
-    
-    
-    /**
-     * @param args the command line arguments
-     */
+public class Main {
     public static void main(String[] args) {
-        // TODO code application logic here
         Scanner sc = new Scanner(System.in);
+        String xProductID ="";
+        String xProductName ="";
+        double xProductPrice = 0;
+        int ProductAddNumber = 0;
+        System.out.println("Enter number of product you want to add: ");
+        ProductAddNumber = sc.nextInt();sc.nextLine();
         List<Product> t = new ArrayList();
-        String xID = "";String xName = "";double xPrice = 0;
-        String cID = "";double cPrice = 0;
-        int tc;          
-        do {
-            System.out.println("Select your choice: ");
-            tc = sc.nextInt();sc.nextLine();
-            if (tc == 1){
-                System.out.println("Add your number of product: ");
-                int n = sc.nextInt();
-                sc.nextLine();      
-                for (int i=0;i<n;i++){
-                System.out.println("Enter ID: ");
-                xID = sc.nextLine();
-                System.out.println("Enter Name: ");
-                xName = sc.nextLine();
-                System.out.println("Enter Price: ");
-                xPrice = sc.nextDouble();
-                t.add(new Product(xID, xName, xPrice));
-                sc.nextLine();
-                }
-            } else if (tc == 3){
-                System.out.println("List of Products: ");
-                dispList(t);
-            } else if (tc == 2){
-                System.out.println("Select Product: ");
-                int n = sc.nextInt();
-                sc.nextLine();
-                cPrice = sc.nextDouble();sc.nextLine();
-                t.replace(n, "a", "a", cPrice);
-            }
-        } while (tc != 0);
+        for (int i=0;i<ProductAddNumber;i++){
+            System.out.println("Enter the ID: ");
+            xProductID = sc.nextLine();
+            System.out.println("Enter the name of Product");
+            xProductName = sc.nextLine();
+            System.out.println("Enter the price: ");
+            xProductPrice = sc.nextDouble(); sc.nextLine();
+            t.add(new Product(xProductID, xProductName, xProductPrice));
+        }
+        System.out.println("Product list: ");
+        System.out.println("ID     Name     Price");
+        for (Product x : t){
+            System.out.printf("%s      %s        %g",x.getProductID(),x.getProductName(),x.getProductPrice());
+            System.out.println("\n");
+        }
+        
+        
         
     }
     
