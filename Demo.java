@@ -41,8 +41,7 @@ public class Main {
             System.out.printf("%s      %s        %g",x.getProductID(),x.getProductName(),x.getProductPrice());
             System.out.println("\n");
         }
-        
-        
+         
         
     }
     
