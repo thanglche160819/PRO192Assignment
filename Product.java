@@ -9,51 +9,47 @@
  * @author PC - Thinkpad
  */
 public class Product {
-    private String ProductID;
     private String ProductName;
+    private String ProductID;
     private double ProductPrice;
     
     public Product(){
-        ProductID = "";
-        ProductName = "";
-        ProductPrice = 0;
+    
     }
     
-    public Product(String xID, String xName, double xPrice){
-        ProductID = xID;
-        ProductName = xName;
-        ProductPrice = xPrice;
+    public Product(String xProductName, String xProductID, double xProductPrice){
+        ProductID = xProductID;
+        ProductName = xProductName;
+        ProductPrice = xProductPrice;
     }
     
-    public String getProductID() {
-        return ProductID;
-    }
-
-    public String getProductName() {
+    public String getProductName(){
         return ProductName;
+    }
+    
+    public String getProductID(){
+        return ProductID;
     }
     
     public double getProductPrice(){
         return ProductPrice;
     }
     
-    public void setProductID(String ProductID){
-        this.ProductID = ProductID;
-    }
-    
     public void setProductName(String ProductName){
         this.ProductName = ProductName;
     }
     
-    public void setProductID(double xPrice){
-        ProductPrice = xPrice;
+    public void setProductID(String ProductID){
+        this.ProductID = ProductID;
+    }
+    
+    public void setProductPrice(double ProductPrice){
+        this.ProductPrice = ProductPrice;
     }
     
     @Override
     public String toString(){
-        return ProductID + "," + ProductName + "," + ProductPrice + "\n";
+        return ProductID + ", " + ProductName +", " + ProductPrice + "\n";
     }
-    
-    
     
 }
