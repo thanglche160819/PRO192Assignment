@@ -1,0 +1,100 @@
+
+import java.util.ArrayList;
+
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
+/**
+ *
+ * @author PC - Thinkpad
+ */
+public class ProductList extends ArrayList<Product> {
+    
+    public ProductList(){
+        super();
+    }
+    
+    private boolean isCodeDupplicated(String ProductID) {
+		ProductID = ProductID.trim().toUpperCase();
+		return search(ProductID)!= null;
+    }
+    
+    public Product search(String ProductID) {
+		ProductID = ProductID.trim().toUpperCase();
+		for (int i = 0; i < this.size(); i++) {
+			if(this.get(i).getProductID().equals(ProductID))
+				return this.get(i);
+		}
+		return null;
+    }
+    
+    public void addProduct() {
+		String newProductID, newProductName;
+		int newProductPrice;
+		boolean codeDuplicated = false;
+		do {
+			newProductID = Inputter.inputNonBlankStr("Enter Product ID: ");
+			newProductID = newProductID.toUpperCase();
+			codeDuplicated = isCodeDupplicated(newProductID);
+		} while (codeDuplicated == true);
+		
+		newProductName = Inputter.inputNonBlankStr("Name of a product : ");
+		newProductName = newProductName.toUpperCase();
+		newProductPrice = Inputter.inputInt("Price: ");
+		Product product = new Product(newProductID,newProductName,newProductPrice);
+		this.add(product);
+		System.out.println("Product " +newProductID + " has been added.");
+		
+	}
+    
+    public void searchProduct() {
+		if (this.isEmpty()) {
+			System.out.println("Emty list. No search can be performed!");
+		}else {
+			String scode = Inputter.intputStr("Input Product ID for search: ");
+			Product product = this.search(scode);
+			if (product == null) {
+				System.out.println("Product "+scode + " doesn't existed!");
+			}else {
+				System.out.println("Found: " +product);
+			}
+		}
+	}
+    
+    public void printAll() {
+		if (this.isEmpty()) {
+			System.out.println("Empty List!");
+		}else {
+			System.out.println("Product list:");
+                        System.out.println("Product ID      Product Name        Prodct Price");
+			for (Product product  : this ) {
+				System.out.println(product);
+			}
+			System.out.println("Total: " +this.size() + " product(s).");
+		}
+	}
+    
+    public void updatePrice() {
+		if (this.isEmpty()) {
+			System.out.println("Emty list. No search can be performed!");
+		}else {
+			String ucode = Inputter.intputStr("Input code of updated product: ");
+			Product product = this.search(ucode);
+			if (product == null) {
+				System.out.println("Product " + ucode + " doesn't existed!");
+			}else {
+				int oldPrice = product.getProductPrice();
+				String msg = "Old Price: " + oldPrice +", new price: ";
+				int newPrice = Inputter.inputInt(msg);
+				product.setProductPrice(newPrice);
+				System.out.println("Product " +ucode + " has been updated");
+			}
+		}
+	}
+}
+    
+    
+    
